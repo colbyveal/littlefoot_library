@@ -1,28 +1,28 @@
 {
 "return_records": [
         {
-            "title": "Presumptions of Philosophy",
+            "Title": "Presumptions of Philosophy",
             "Author": "Donald Daffy Duckworth",
             "Pages": "657",
             "DDC": "120.563DUC",
             "Read": "Fully"
         },
         {
-            "title": "Philosophical Ponderings",
+            "tTitle": "Philosophical Ponderings",
             "Author": "Mickey and Minnie Mouse",
             "Pages": "1200",
             "DDC": "125.563MOU",
             "Read": "Partially"
         },
         {
-            "title": "Application of Natural Sciences",
+            "Title": "Application of Natural Sciences",
             "Author": "Rick Sanchez",
             "Pages": "145",
             "DDC": "601.103SAN",
             "Read": "Fully"
         },
         {
-            "title": "Rented and Unread",
+            "Title": "Rented and Unread",
             "Author": "Solitude O'Brien",
             "Pages": "734",
             "DDC": "834.334OBR",
