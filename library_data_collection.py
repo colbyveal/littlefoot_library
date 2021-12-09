@@ -16,6 +16,19 @@ class DDC(Enum):
     Lit = 800
     History_Geo = 900
 
+DDC_dict = {
+    0: "Computer Science, Information & General Works",
+    100: "Philosophy & Psychology",
+    200: "Religion",
+    300: "Social Sciences",
+    400: "Language",
+    500: "Pure Science",
+    600: "Applied Science",
+    700: "Arts & Recreation",
+    800: "Literature",
+    900: "History & Geography"
+}
+
 DDC_Names = {
     "CS_Info_General": "Computer Science, Information & General Works",
     "Phil_Psych": "Philosophy & Psychology",
@@ -56,14 +69,15 @@ def get_total_pages_per_ddc(RECORDS):
     return ddc_json
 
 def get_ddc_for_value(ddc):
-    ddc = int(ddc[:-7])
+    ddc = int(ddc[:-7]) #gets rid of uneeded digits
     ddc_floor = math.floor(ddc /100) * 100
     return ddc_floor #returns DDC Category number. Reference DDC(Enum) for values
 
 def get_DDC_names(ddc_list):
     ddc_names = []
     for ddc_code in ddc_list:
-        ddc_names.append(DDC_Names[(DDC(ddc_code).name)])
+        ddc_names.append(DDC_dict[ddc_code])
+       # ddc_names.append(DDC_Names[(DDC(ddc_code).name)])
     return ddc_names
 
 
