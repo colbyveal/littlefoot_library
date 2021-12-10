@@ -17,6 +17,10 @@ The Dewie Decimal System is as follows:
 - 800 – Literature
 - 900 – History & Geography
 
+## Dependencies
+
+- Python 3.9.2
+
 ## Usage
 
 littlefoot_library at current can be run via 2 methods:

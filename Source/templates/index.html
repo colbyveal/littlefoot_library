@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <h1>Littlefoot Library</h1>
+  <form
+    id="return_record"
+    accept-charset="UTF-8"
+    action="/submit_action"
+    autocomplete="off"
+    method="post"
+    target="_blank"
+  ><body>
+    <fieldset>
+      <legend>Book Return:</legend>
+      <label for="Name">Your Name:</label><br />
+      <input id="name_input" name="Name" type="text" value="Frank" /><br />
+      <label for="town_resident">Town Resident?</label><br />
+      <input id="town_resident_radio_button_yes"checked="checked" name="town_resident" type="radio" value="yes" />
+      Yes <br />
+      <input id="town_resident_radio_button_no" name="town_resident" type="radio" value="no" /> No <br />
+      <label for="Title">Title:</label><br />
+      <input id="book_title_input" name="Title" type="text" value="book title" /><br />
+      <label for="Author">Author:</label><br />
+      <input id="author_input" name="Author" type="text" value="book author" /><br />
+      <label for="pages">Number of Pages:</label><br />
+      <input id="page_count_input" name="Pages" type="number" value="pages in book" /><br />
+      <label for="dewey_decimal">Dewey Decimal Number:</label><br />
+      <input id="dewey_decimal_input" name="DDC" type="text" value="enter number" /><br />
+      <label for="book_read_amount">How Much of the book was read?</label><br />
+      <select name="Read" id="book_read_amount_select"> 
+        <option id="book_read_amount_read" selected="selected" value="read">Read</option>
+        <option id="book_read_amount_partially"value="partially">Partially</option>
+        <option id="book_read_amount_notread"value="unread">Not Read</option>
+      </select><br />
+      <label for="time_to_read">Time taken to read book:</label><br />
+      <select name="time_to_read_selection" id="time_to_read_select">
+        <option id="less_week_option" selected="selected" value="less_week">Less then 1 week</option>
+        <option id="2_3weeks_option" value="2_3weeks">2-3 weeks</option>
+        <option id="morethan_4weeks_option" value="morethen_4weeks">4 weeks or more</option>
+      </select><br />
+      <label for="rating">Your rating:</label><br />
+      <select name="rating_selection" id="rating_select">
+        <option selected="selected" value="5">&starf;&starf;&starf;&starf;&starf;</option>
+        <option value="4">&starf;&starf;&starf;&starf;</option>
+        <option value="3">&starf;&starf;&starf;</option>
+        <option value="2">&starf;&starf;</option>
+        <option value="1">&starf;</option>
+      </select><br />
+      <br />
+        <button id="submit_button" type="submit" form="return_record">Submit</button>
+    </fieldset> 
+  </body>
+</form>
+</html>

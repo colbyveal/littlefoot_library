@@ -1,0 +1,3 @@
+FLASK_APP=Source/library_web_api.py
+FLASK_DEBUG=TRUE
+FLASK_ENV=develop
