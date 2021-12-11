@@ -18,7 +18,7 @@ DDC_dict = {
 
 RECORDS = {}
 
-def load_data(file='../Records/test_data.json'):
+def load_data(file='./Records/test_data.json'):
     with open(file) as f:
         RECORDS = json.load(f)
 
@@ -70,7 +70,7 @@ def get_total_pages_per_ddc(RECORDS):
         ddc_list.append(get_ddc_for_value(record['DDC']))
     ddc_names = get_DDC_names(ddc_list)
     ddc_count = Counter(ddc_names)
-    ddc_json = json.dumps(ddc_count,indent=4)
+    ddc_json = json.dumps(ddc_count)
     return ddc_json
 
 def get_ddc_for_value(ddc):
@@ -82,11 +82,18 @@ def get_DDC_names(ddc_list):
     ddc_names = []
     for ddc_code in ddc_list:
         ddc_names.append(DDC_dict[ddc_code])
-       # ddc_names.append(DDC_Names[(DDC(ddc_code).name)])
     return ddc_names
 
-def get_Records():
-    return RECORDS
+def process_report(records):
+    report = {}
+
+    pages = get_total_pages_read(records)
+    report['Total Pages Read : '] = int(pages)
+
+    ddc = get_total_pages_per_ddc(records)
+    report['Books Per Category: '] = ddc
+
+    return report
 
 
 
