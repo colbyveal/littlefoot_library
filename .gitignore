@@ -1,4 +1,4 @@
-*/.pytest_cache/*
-*/__pycache__/*
-*/nohup.out
-*/report.xml
+Source/QA/.pytest_cache/*
+Source/QA/__pycache__/*
+Source/__pycache__/*
+./report.xml
