@@ -58,6 +58,9 @@ class Submit(Resource):
         if not result.get('Pages'):
             return '400: Please include Number of Pages when submitting', 400
 
+        if not validate_pages_number(result.get('Pages')):
+            return '400: Please ensure you have entered a number in the Pages field', 400
+
         elif not validate_ddc(result.get('DDC')):
             return '400: DDC not valid', 400
 

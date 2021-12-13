@@ -6,6 +6,10 @@ from Source import library_web_api
 from Source import library_data_collection
 
 url="http://127.0.0.1:5000"
+WEB_RECORDS = {}
+
+def pytest_sessionstart(session):
+    WEB_RECORDS = library_data_collection.load_data('Records/web_records.json')
 
 def test_GET_badPath_Fail():
     response = requests.get(url + '/path-does-not-exist')
@@ -87,3 +91,6 @@ def test_POST_submit_invalidDDCFormat_FirstThreeCharNotInt_NEGATIVE():
         assert response.status_code == 400
         assert response.text == '"400: DDC not valid"\n'
 
+def pytest_sessionfinish(session, exitstatus):
+    with open('Records/web_records.json', 'w') as f:
+        json.dump(WEB_RECORDS,f,indent=4)

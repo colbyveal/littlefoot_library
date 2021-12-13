@@ -42,6 +42,9 @@ def format_incoming_record(new_record):
     new_record.pop('Name')
     return new_record
 
+def validate_pages_number(pages):
+    return pages.isnumeric()
+
 def validate_ddc(ddc):
     valid = True
     if(len(ddc) < 3):
