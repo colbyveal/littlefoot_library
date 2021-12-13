@@ -55,7 +55,7 @@ RECORD_WEB = {
             'Name': 'Test User'
         }
 
-REPORT = {'Total Pages Read : ': 1402, 'Books Per Category: ': '{"Philosophy & Psychology": 2, "Applied Science": 1, "Literature": 1}'}
+REPORT = {'Total Pages Read : ': 1402, 'Books Per Category: ': '{"Philosophy & Psychology": "1857", "Applied Science": "145", "Literature": "734"}'}
 
 testdata_filepath = './Records/test_data.json'
 qadata_filepath = './Records/QA_data.json'
@@ -63,7 +63,7 @@ qadata_filepath = './Records/QA_data.json'
 #get_total_pages_per_ddc Tests
 def test_get_total_pages_per_ddc_SUCCESS():
     pages_per_ddc = library_data_collection.get_total_pages_per_ddc(RECORDS)
-    assert pages_per_ddc == '{"Philosophy & Psychology": 2, "Applied Science": 1, "Literature": 1}'
+    assert pages_per_ddc == '{"Philosophy & Psychology": "1857", "Applied Science": "145", "Literature": "734"}'
 
 #get_ddc_for_valueTests
 def test_get_ddc_for_value_SUCCESS():

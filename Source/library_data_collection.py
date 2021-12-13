@@ -66,17 +66,24 @@ def get_total_pages_read(RECORDS):
 
 def get_total_pages_per_ddc(RECORDS):
     ddc_list = []
+    per_page_list = {}
     for record in RECORDS['return_records']:
+        ddc = get_DDC_name(get_ddc_for_value(record['DDC']))
+        if ddc in per_page_list.keys():
+            per_page_list[ddc] = str(int(per_page_list[ddc]) + int(record['Pages']))
+        else:
+            per_page_list[ddc] = record['Pages']
         ddc_list.append(get_ddc_for_value(record['DDC']))
-    ddc_names = get_DDC_names(ddc_list)
-    ddc_count = Counter(ddc_names)
-    ddc_json = json.dumps(ddc_count)
+    ddc_json = json.dumps(per_page_list)
     return ddc_json
 
 def get_ddc_for_value(ddc):
     ddc = int(ddc[0:3]) #gets first 3 items in string
     ddc_floor = math.floor(ddc /100) * 100
     return ddc_floor #returns DDC Category number. Reference DDC_dict for values
+
+def get_DDC_name(ddc):
+    return DDC_dict[ddc]
 
 def get_DDC_names(ddc_list):
     ddc_names = []
