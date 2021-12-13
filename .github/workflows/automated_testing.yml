@@ -25,3 +25,21 @@ jobs:
         with:
           name: unit_test_results
           path: unit_test.xml
+
+  publish-test-results:
+    needs: run-unit-tests
+    runs-on: ubuntu-latest
+    steps:
+    
+      - name: Download Unit Test results
+        uses: actions/download-artifact@v2
+        with:
+          name: unit_test_results
+          path: ./
+
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          check_name: Test Results
+          files: ./*.xml
