@@ -8,7 +8,7 @@ import json2table
 
 app = Flask(__name__)
 api = Api(app)
-records_file = './Records/web_records.json'
+web_records_file = './Records/web_records.json'
 RECORDS = {}
 headers = {'Content-Type': 'text/html'}
 
@@ -20,7 +20,7 @@ class Index(Resource):
 
 class Records(Resource):
     def get(self):
-        RECORDS = load_data(records_file)
+        RECORDS = load_data(web_records_file)
 
         headers = {'Content-Type': 'application/json'}
         return make_response(json.dumps(RECORDS, indent=4),200,headers)
@@ -29,7 +29,7 @@ class Records(Resource):
 class Report(Resource):
     def get(self):
 
-        RECORDS = load_data(records_file)
+        RECORDS = load_data(web_records_file)
         report = process_report(RECORDS)
         report_category = report['Books Per Category: ']
         category_json = json.loads(report_category)
@@ -42,12 +42,18 @@ class Report(Resource):
 
 
 class Submit(Resource):
-    def get(self):
-        result = request.args
+    def get(self,form_data=None):
+        if (form_data is not None):
+            result = form_data
+        else:
+            result = request.args
         return make_response(render_template('records.html',result=result),200,headers)
 
-    def post(self):
-        result = request.form.to_dict()
+    def post(self,form_data=None):
+        if (form_data is not None):
+            result = json.loads(form_data)
+        else:
+            result = request.form.to_dict()
 
         if not result.get('Pages'):
             return '400: Please include Number of Pages when submitting', 400
@@ -55,14 +61,14 @@ class Submit(Resource):
         elif not validate_ddc(result.get('DDC')):
             return '400: DDC not valid', 400
 
-        update_web_records(result,records_file)
+        update_web_records(result,web_records_file)
         return make_response(render_template('records.html',result=result),200,headers)
 
 
 api.add_resource(Index, '/')
 api.add_resource(Records, '/records')
 api.add_resource(Report, '/report')
-api.add_resource(Submit, '/submit_action')
+api.add_resource(Submit, '/submit_action', '/submit_action/<form_data>')
 
 if __name__ == '__main__':
     app.run()
