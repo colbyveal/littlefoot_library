@@ -1,0 +1,27 @@
+name: automated-testing
+on: [push]
+jobs:
+  run-unit-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.9]
+  
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v1
+
+      - name: Install Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run unit tests
+        run: pytest Source/QA/unit_test.py --junitxml="unit_test.xml"
+
+      - name: Upload Results for final publish
+        uses: actions/upload-artifact@v2
+        with:
+          name: unit_test_results
+          path: unit_test.xml
