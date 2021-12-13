@@ -9,7 +9,7 @@ RECORDS = {
             "Author": "Donald Daffy Duckworth",
             "Pages": "657",
             "DDC": "120.563DUC",
-            "Read": "Fully"
+            "Read": "Read"
         },
         {
             "Title": "Philosophical Ponderings",
@@ -23,7 +23,7 @@ RECORDS = {
             "Author": "Rick Sanchez",
             "Pages": "145",
             "DDC": "601.103SAN",
-            "Read": "Fully"
+            "Read": "Read"
         },
         {
             "Title": "Rented and Unread",
@@ -55,7 +55,7 @@ RECORD_WEB = {
             'Name': 'Test User'
         }
 
-REPORT = {'Total Pages Read : ': 1402, 'Books Per Category: ': '{"Philosophy & Psychology": "1857", "Applied Science": "145", "Literature": "734"}'}
+REPORT = {'Total Pages Read : ': 1402, 'By Category: ': '{"Philosophy & Psychology": "1257", "Applied Science": "145", "Literature": "0"}'}
 
 testdata_filepath = './Records/test_data.json'
 qadata_filepath = './Records/QA_data.json'
@@ -63,7 +63,7 @@ qadata_filepath = './Records/QA_data.json'
 #get_total_pages_per_ddc Tests
 def test_get_total_pages_per_ddc_SUCCESS():
     pages_per_ddc = library_data_collection.get_total_pages_per_ddc(RECORDS)
-    assert pages_per_ddc == '{"Philosophy & Psychology": "1857", "Applied Science": "145", "Literature": "734"}'
+    assert pages_per_ddc == '{"Philosophy & Psychology": "1257", "Applied Science": "145", "Literature": "0"}'
 
 #get_ddc_for_valueTests
 def test_get_ddc_for_value_SUCCESS():

@@ -31,11 +31,11 @@ class Report(Resource):
 
         RECORDS = load_data(web_records_file)
         report = process_report(RECORDS)
-        report_category = report['Books Per Category: ']
+        report_category = report['By Category: ']
         category_json = json.loads(report_category)
         json2html_catgory = json2table.convert(category_json,table_attributes={"id": "category_table"})
-        report.pop('Books Per Category: ')
-        report['Books Per Category : '] = json2html_catgory
+        report.pop('By Category: ')
+        report['By Category : '] = json2html_catgory
         json2html_report = json2table.convert(report, table_attributes={'id': 'report_table'})
         
         return make_response(render_template('report.html',report=json2html_report),200,headers)

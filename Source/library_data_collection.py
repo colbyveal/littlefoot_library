@@ -58,13 +58,18 @@ def validate_ddc(ddc):
     return valid
 
 def get_total_pages_read(RECORDS):
-    pages_read = 0
+    total_read = 0
     for record in RECORDS['return_records']:
-        if record['Read'] == 'Fully':
-            pages_read += int(record['Pages'])
-        elif record['Read'] == 'Partially':
-            pages_read += int(record['Pages'])/2
+        total_read += get_pages_read_for_record(record)
 
+    return total_read
+
+def get_pages_read_for_record(record):
+    pages_read = 0
+    if record['Read'] == 'Read':
+        pages_read = int(record['Pages'])
+    elif record['Read'] == 'Partially':
+        pages_read = int(record['Pages'])/2
     return pages_read
 
 def get_total_pages_per_ddc(RECORDS):
@@ -73,9 +78,9 @@ def get_total_pages_per_ddc(RECORDS):
     for record in RECORDS['return_records']:
         ddc = get_DDC_name(get_ddc_for_value(record['DDC']))
         if ddc in per_page_list.keys():
-            per_page_list[ddc] = str(int(per_page_list[ddc]) + int(record['Pages']))
+            per_page_list[ddc] = str(int(float(per_page_list[ddc])) + int(float(get_pages_read_for_record(record))))
         else:
-            per_page_list[ddc] = record['Pages']
+            per_page_list[ddc] = str(get_pages_read_for_record(record))
         ddc_list.append(get_ddc_for_value(record['DDC']))
     ddc_json = json.dumps(per_page_list)
     return ddc_json
@@ -101,7 +106,7 @@ def process_report(records):
     report['Total Pages Read : '] = int(pages)
 
     ddc = get_total_pages_per_ddc(records)
-    report['Books Per Category: '] = ddc
+    report['By Category: '] = ddc
 
     return report
 

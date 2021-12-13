@@ -5,14 +5,16 @@
 LittleFoot Library contains the following parts:
 
 - `library_data_collection.py`: backend service for processing data
-- `process_records.py`: middle layer interface for running `library_data_collection.py` and defining input
-- `library_input.html`: UI layer for creating records for end-users via the web
+- `process_records.py`: middle layer interface for running `library_data_collection.py` and defining input. This is for local testing only.
+- `library_web_api.py`: REST api that calls functions from `library_data_collection.py`
+- `index.html`: UI layer for creating records for end-users via the web
 
 ## Test Strategy
 
 - [Unit Testing](unit-testing)
-- [Integration Testing](integration-testing)
-- [UI Testing](ui-testing) (Not implemented as part of this project)
+- [API Testing](api-testing)
+- [UI Testing](ui-testing)
+- [End to End Testing](end-to-end-testing)
 
 ## Unit Testing
 
@@ -20,16 +22,20 @@ At the Unit Testing level, we should target each function within our backend ser
 positive and negative test case and any edge cases. We should NOT be interacting via interfaces with
 the underlying functions and is to be performed at the lowest level (in our case, `library_data_collection.py`)
 
-## Integration Testing
+## API Testing
 
-At the Integration Test level, we will interact with the system through the `process_records.py` layer.
-This should involve creating various test data scenarios, with json files named in the fashion of `<testNumber_testName.json>`
-with those corresponding to the testNumber and testName of the Integration test that uses it. At this level, no calls
-are to be made directly to our server side code (in our case, `library_data_collection.py`). 
-
-NOT being tested are scenarios in which are not possible via our UI Interface (empty text boxes, etc)
+At the API Testing level, we will be excerising code through the `library_web_api.py` entry point. We should 
+call each API and trigger both happy paths and exceptions for them and ensure our return values are what we
+expect. We will need to create mock json data to trigger certain scenarios. 
 
 ## UI Testing
 
 At the UI Level, we will be interacting with the webpage `library_input.html` and ensure the behavior is as expected. This includes things
-like button clicks, test box entry (and the rules around those text boxes), 
+like button clicks, test box entry, page loading. We will test functionality that is listed in the requirements - not additional pages we've created
+development or testing purposes that will not make it to live production as this is wasted testing effort. If it is decided one of these test
+views will make it to public, we will address testing at that time
+
+# End to End Testing
+
+Finally, a happy path e2e test should be created and fully automated. This will include interacting with the UI to submit a new record,
+and then ensuring that the response is correct. Then, checking the server to ensure the record as added to the web_records.json.
