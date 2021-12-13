@@ -1,6 +1,6 @@
 import pytest
 import json
-from Source import library_data_collection
+import library_data_collection
 
 RECORDS = {
     "return_records": [

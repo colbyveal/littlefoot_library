@@ -2,8 +2,8 @@ import requests
 import pytest
 import flask
 import json
-from Source import library_web_api
-from Source import library_data_collection
+import library_web_api
+import library_data_collection
 
 url="http://127.0.0.1:5000"
 WEB_RECORDS = {}

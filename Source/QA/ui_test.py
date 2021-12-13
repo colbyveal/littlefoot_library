@@ -89,7 +89,7 @@ def test_submitButton_invalidPageNumber_NEGATIVE():
 def pytest_sessionfinish(session, exitstatus):
     with open('Records/web_records.json', 'w') as f:
         json.dump(WEB_RECORDS,f,indent=4)
-    driver.quit()
+    driver.quit()          
 
 
 
