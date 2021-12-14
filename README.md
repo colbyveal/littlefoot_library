@@ -189,3 +189,8 @@ using the `test_data.json` provided in the repo:
 ```
 
 When running the server, visiting `localhost:5000/report` will run the report on all items within web_
+
+## Github Actions
+
+This project is set up to run a Github Action that triggers the running of Unit Tests in the Pipeline. Check the `Actions` tab for
+status of runs.
