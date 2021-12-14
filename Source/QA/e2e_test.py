@@ -46,3 +46,5 @@ def test_e2e_SUCCESS():
     prev_total = prev_report['Total Pages Read : ']
     new_total = report['Total Pages Read : ']
     assert (int(new_total) - int(prev_total)) == 111
+
+    driver.quit()

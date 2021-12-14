@@ -100,7 +100,7 @@ def test_runReport_SUCCESS():
    
 
 def pytest_sessionfinish(session, exitstatus):
-    driver.quit()
+    self.driver.quit()
     with open('Records/web_records.json', 'w') as f:
         json.dump(WEB_RECORDS,f,indent=4)
           
