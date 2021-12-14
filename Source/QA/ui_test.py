@@ -1,4 +1,6 @@
 import pytest
+import json
+import library_data_collection
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
@@ -37,7 +39,7 @@ def test_submitButton_SUCCESS():
     driver.switch_to.window(window1)
     result = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "result")))
     assert driver.current_url == url + 'submit_action'
-    assert result.text == "{'Title': 'book title', 'Author': 'book author', 'Pages': '111', 'DDC': '987testddc', 'Read': 'read'}"
+    assert result.text == "{'Title': 'book title', 'Author': 'book author', 'Pages': '111', 'DDC': '987testddc', 'Read': 'Read'}"
 
     driver.close()
     driver.switch_to.window(driver.window_handles[0])
@@ -86,10 +88,22 @@ def test_submitButton_invalidPageNumber_NEGATIVE():
     driver.close()
     driver.switch_to.window(driver.window_handles[0])
 
+def test_runReport_SUCCESS():
+    result_string = ''
+    url = 'http://127.0.0.1:5000/report'
+    driver.get(url)
+
+    report = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "report_table")))
+    report_text = report.text
+    assert report_text.startswith('Total Pages Read')
+
+   
+
 def pytest_sessionfinish(session, exitstatus):
+    driver.quit()
     with open('Records/web_records.json', 'w') as f:
         json.dump(WEB_RECORDS,f,indent=4)
-    driver.quit()          
+          
 
 
 

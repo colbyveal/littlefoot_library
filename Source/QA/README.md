@@ -34,7 +34,7 @@ Can be executed via `python -m pytest Source/QA/api_test.py` from root
 
 ## UI Testing
 
-At the UI Level, we will be interacting with the webpage `library_input.html` and ensure the behavior is as expected. This includes things
+At the UI Level, we will be interacting with the webpage `index.html` and ensure the behavior is as expected. This includes things
 like button clicks, test box entry, page loading. We will test functionality that is listed in the requirements - not additional pages we've created
 development or testing purposes that will not make it to live production as this is wasted testing effort. If it is decided one of these test
 views will make it to public, we will address testing at that time.
