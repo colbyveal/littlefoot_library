@@ -11,10 +11,10 @@ LittleFoot Library contains the following parts:
 
 ## Test Strategy
 
-- [Unit Testing](unit-testing)
-- [API Testing](api-testing)
-- [UI Testing](ui-testing)
-- [End to End Testing](end-to-end-testing)
+- Unit Testing
+- API Testing
+- UI Testing
+- End to End Testing
 
 ## Unit Testing
 
@@ -30,7 +30,8 @@ At the API Testing level, we will be excerising code through the `library_web_ap
 call each API and trigger both happy paths and exceptions for them and ensure our return values are what we
 expect. We will need to create mock json data to trigger certain scenarios. 
 
-Can be executed via `python -m pytest Source/QA/api_test.py` from root
+Can be executed via `python -m pytest Source/QA/api_test.py` from root. Ensure the flask server is running first,
+via `pythom -m flask run`
 
 ## UI Testing
 
@@ -39,11 +40,14 @@ like button clicks, test box entry, page loading. We will test functionality tha
 development or testing purposes that will not make it to live production as this is wasted testing effort. If it is decided one of these test
 views will make it to public, we will address testing at that time.
 
-Can be executed via `python -m pytest Source/QA/ui_test.py` from root
+Can be executed via `python -m pytest Source/QA/ui_test.py` from root. Ensure the flask server is running first,
+via `pythom -m flask run`
 
 # End to End Testing
 
 Finally, a happy path e2e test should be created and fully automated. This will include interacting with the UI to submit a new record,
-and then ensuring that the response is correct. Then, checking the server to ensure the record as added to the web_records.json.
+and then ensuring that the response is correct. Then, checking the server to ensure the record as added to the web_records.json. Then,
+it will run the report and ensure the new data is present.
 
-Can be executed via `python -m pytest Source/QA/e2e_test.py` from root
+Can be executed via `python -m pytest Source/QA/e2e_test.py` from root. Ensure the flask server is running first,
+via `pythom -m flask run`

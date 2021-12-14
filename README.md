@@ -170,7 +170,7 @@ A detailed testplan exists in the `Source/QA` folder titled `README.md`. As an o
 - UI Tests
 - End-to-End Test
 
-In order to execute testing, the server must first be running. Ensure you've executed steps listed in [Start-Up](start-up) before attempting to run tests.
+In order to execute testing, the server must first be running. Ensure you've executed steps listed in `Start-Up` before attempting to run tests.
 To execute the tests, run `python -m pytest` to run all tests, or `python -m pytest Source/QA/<testfile>` to run an individual test file.
 
 ## Output
