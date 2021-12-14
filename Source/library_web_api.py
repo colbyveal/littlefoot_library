@@ -1,9 +1,7 @@
 from flask import Flask, request, render_template, make_response
 from flask_restful import Resource, Api
 from json import dumps
-from flask_jsonpify import jsonify
 from library_data_collection import *
-from urllib.parse import parse_qs
 import json2table
 
 app = Flask(__name__)
